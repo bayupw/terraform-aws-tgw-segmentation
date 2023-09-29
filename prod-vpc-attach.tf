@@ -11,7 +11,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "env_prod" {
 # associate to environment rtb
 resource "aws_ec2_transit_gateway_route_table_association" "env_prod" {
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.env_prod.id
-  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.prod.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.env_prod.id
 }
 
 # Propagate to kong rtb
@@ -23,7 +23,7 @@ resource "aws_ec2_transit_gateway_route_table_propagation" "kong_prod" {
 # Propagate to egress rtb
 resource "aws_ec2_transit_gateway_route_table_propagation" "egress_prod" {
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.env_prod.id
-  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.kong-prod.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.egress-prod.id
 }
 
 # Propagate to peering rtb
