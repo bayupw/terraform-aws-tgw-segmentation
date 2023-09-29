@@ -1,7 +1,7 @@
 # TGW rtb
 resource "aws_ec2_transit_gateway_route_table" "kong_prod" {
   transit_gateway_id = aws_ec2_transit_gateway.this.id
-  tags = merge(var.tags,{ Name = "env-prod-tgw-rtb" })
+  tags = merge(var.tags,{ Name = "kong-prod-tgw-rtb" })
 }
 
 # Blackhole static routes
